@@ -4,16 +4,16 @@
 
 ```yaml
 - name: Try to install yc cli and login into yandex cloud
-  uses: okar1/yc-cli-install@master
+  uses: lxhan/yc-cli-install@v1
   with:
     SA_KEY: your service account private key (json form) [optional]
-
 ```
 
-***(eng)*** This will install the latest version of yandex cloud cli. Then logging in if SA_KEY parameter is provided.
+_**(eng)**_ This will install the latest version of yandex cloud cli. Then
+logging in if SA_KEY parameter is provided.
 
-***(rus)*** Устанавливает последнюю версию yc cli. Выполняет логин если указан SA_KEY.
-
+_**(rus)**_ Устанавливает последнюю версию yc cli. Выполняет логин если указан
+SA_KEY.
 
 ## Outputs
 
