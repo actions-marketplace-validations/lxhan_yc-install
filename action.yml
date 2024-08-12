@@ -1,4 +1,4 @@
-name: "yc-cli-install"
+name: "yc-install"
 description: "deploy"
 inputs:
   SA_KEY:
@@ -6,6 +6,9 @@ inputs:
     required: false
     default: ""
 
+branding:
+  icon: "terminal"
+  color: "blue"
 runs:
   using: "composite"
   steps:
