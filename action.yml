@@ -15,7 +15,12 @@ runs:
     - name: Get latest yc version number
       shell: bash
       id: version
-      run: echo "::{name}={value} >> $GITHUB_OUTPUT::`curl -s --fail https://storage.yandexcloud.net/yandexcloud-yc/release/stable`"
+      run: |
+        echo "::group:: Get latest yc version"
+        LATEST_YC_VERSION=$(curl -s --fail https://storage.yandexcloud.net/yandexcloud-yc/release/stable)
+        echo "YC latest version: $LATEST_YC_VERSION"
+        echo "::endgroup::"
+        echo "LATEST_YC_VERSION=$LATEST_YC_VERSION" >> $GITHUB_OUTPUT
 
     - name: Cache yc binary
       uses: actions/cache@v4
@@ -28,8 +33,8 @@ runs:
       if: steps.cache-yc-cli.outputs.cache-hit != 'true'
       shell: bash
       run: |
-        echo Downloading yc cli version ${{ steps.version.outputs.value }}
-        sudo curl --fail "https://storage.yandexcloud.net/yandexcloud-yc/release/${{ steps.version.outputs.value }}/linux/amd64/yc" -o /usr/local/bin/yc
+        echo Downloading yc cli version ${{ needs.version.outputs.LATEST_YC_VERSION }}
+        sudo curl --fail "https://storage.yandexcloud.net/yandexcloud-yc/release/${{ needs.version.outputs.LATEST_YC_VERSION }}/linux/amd64/yc" -o /usr/local/bin/yc
 
     - name: Set permissions for yc cli binary
       shell: bash
