@@ -4,7 +4,7 @@
 
 ```yaml
 - name: Try to install yc cli and login into yandex cloud
-  uses: lxhan/yc-install@v1
+  uses: lxhan/yc-install@v3
   with:
     SA_KEY: your service account private key (json form) [optional]
 ```
